@@ -170,13 +170,13 @@ const RejectedRequests = () => {
             <Alert
               key={request.id}
               icon={<IconUserCheck size={20} />}
-              title="Rejected Requests"
+              title="Rejected Request"
               color="grape"
               className={styles["accepted-request-item"]}
             >
               <p>
                 <span>User Name : </span>
-                {`${request.to_user}`}
+                {`${request.from_user}`}
               </p>
               <p>
                 <span>Message: </span> {request.message}
@@ -226,7 +226,7 @@ const SentRequests = () => {
             <Alert
               key={request.id}
               icon={<IconUserCheck size={20} />}
-              title="Sent Request"
+              title="Accepted Request"
               color="grape"
               className={styles["accepted-request-item"]}
             >
