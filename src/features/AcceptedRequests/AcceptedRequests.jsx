@@ -168,6 +168,7 @@ const RejectedRequests = () => {
         data.map((request) => (
           <Fragment key={request.id}>
             <Alert
+              style={{ color: "#ff6464" }}
               key={request.id}
               icon={<IconUserCheck size={20} />}
               title="Rejected Request"
@@ -224,6 +225,7 @@ const SentRequests = () => {
         data.map((request) => (
           <Fragment key={request.id}>
             <Alert
+              style={{ color: "#FFA500" }}
               key={request.id}
               icon={<IconUserCheck size={20} />}
               title="Sent Request"
