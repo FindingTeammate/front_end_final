@@ -48,7 +48,7 @@ const PasswordReset = () => {
     };
     mutation.mutate(payload, {
       onSuccess: () => {
-        toast.success("Password reset successfully. Redirecting to Login!");
+        toast.success("Password reset successfull. Redirecting to Login!");
         setPassword("");
         setTimeout(() => {
           navigate("/login");
