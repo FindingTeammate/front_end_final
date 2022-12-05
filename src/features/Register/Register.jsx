@@ -18,12 +18,25 @@ const Register = () => {
 
   const [, setAuthDetails] = useAuthContext();
 
-  const mutation = useMutation((newUser) => {
-    return fetch("https://ftm.pythonanywhere.com/register/", {
+  const mutation = useMutation(async (newUser) => {
+    const response = await fetch("https://ftm.pythonanywhere.com/register/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newUser),
-    }).then((response) => response.json());
+    });
+
+    // if (!response.ok) {
+    //   console.log("Response is", response);
+
+    //   throw new Error("Hey there");
+    // }
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      return Promise.reject(data.password);
+    }
+    return data;
   });
 
   const handleFormChange = (event) => {
@@ -46,6 +59,9 @@ const Register = () => {
           };
           setAuthDetails(formattedData);
           navigate("/user-list");
+        },
+        onError(error) {
+          console.log("error inside", error);
         },
       }
     );
@@ -97,9 +113,13 @@ const Register = () => {
             {mutation.isLoading ? "Registering..." : "Register"}
           </Button>
         </div>
-        {mutation.isError ? (
-          <p>Form submit error: {mutation.error.message}</p>
-        ) : null}
+        {mutation.isError
+          ? mutation.error.map((error) => (
+              <p className={styles["form-submit-error"]} key={error}>
+                {error}
+              </p>
+            ))
+          : null}
       </div>
     </section>
   );
