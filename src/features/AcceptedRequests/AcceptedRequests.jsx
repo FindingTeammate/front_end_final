@@ -226,7 +226,7 @@ const SentRequests = () => {
             <Alert
               key={request.id}
               icon={<IconUserCheck size={20} />}
-              title="Accepted Request"
+              title="Sent Request"
               color="grape"
               className={styles["accepted-request-item"]}
             >
